@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/Personal-Identity-Token/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/Personal-Identity-Token/static/js/main.7d72457d.chunk.js",
-    "main.js.map": "/Personal-Identity-Token/static/js/main.7d72457d.chunk.js.map",
-    "runtime-main.js": "/Personal-Identity-Token/static/js/runtime-main.de7a351e.js",
-    "runtime-main.js.map": "/Personal-Identity-Token/static/js/runtime-main.de7a351e.js.map",
-    "static/js/2.df6077f9.chunk.js": "/Personal-Identity-Token/static/js/2.df6077f9.chunk.js",
-    "static/js/2.df6077f9.chunk.js.map": "/Personal-Identity-Token/static/js/2.df6077f9.chunk.js.map",
-    "static/js/3.570adf25.chunk.js": "/Personal-Identity-Token/static/js/3.570adf25.chunk.js",
-    "static/js/3.570adf25.chunk.js.map": "/Personal-Identity-Token/static/js/3.570adf25.chunk.js.map",
-    "static/js/4.a6f0e017.chunk.js": "/Personal-Identity-Token/static/js/4.a6f0e017.chunk.js",
-    "static/js/4.a6f0e017.chunk.js.map": "/Personal-Identity-Token/static/js/4.a6f0e017.chunk.js.map",
+    "main.css": "/Personal-Identity-Token/static/css/main.afd7172b.chunk.css",
+    "main.js": "/Personal-Identity-Token/static/js/main.772bfa85.chunk.js",
+    "main.js.map": "/Personal-Identity-Token/static/js/main.772bfa85.chunk.js.map",
+    "runtime-main.js": "/Personal-Identity-Token/static/js/runtime-main.49c4f9ae.js",
+    "runtime-main.js.map": "/Personal-Identity-Token/static/js/runtime-main.49c4f9ae.js.map",
+    "static/js/2.b23e4867.chunk.js": "/Personal-Identity-Token/static/js/2.b23e4867.chunk.js",
+    "static/js/2.b23e4867.chunk.js.map": "/Personal-Identity-Token/static/js/2.b23e4867.chunk.js.map",
+    "static/js/3.462db86e.chunk.js": "/Personal-Identity-Token/static/js/3.462db86e.chunk.js",
+    "static/js/3.462db86e.chunk.js.map": "/Personal-Identity-Token/static/js/3.462db86e.chunk.js.map",
+    "static/js/4.b1846457.chunk.js": "/Personal-Identity-Token/static/js/4.b1846457.chunk.js",
+    "static/js/4.b1846457.chunk.js.map": "/Personal-Identity-Token/static/js/4.b1846457.chunk.js.map",
     "index.html": "/Personal-Identity-Token/index.html",
-    "static/css/main.6dea0f05.chunk.css.map": "/Personal-Identity-Token/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.df6077f9.chunk.js.LICENSE.txt": "/Personal-Identity-Token/static/js/2.df6077f9.chunk.js.LICENSE.txt"
+    "static/css/main.afd7172b.chunk.css.map": "/Personal-Identity-Token/static/css/main.afd7172b.chunk.css.map",
+    "static/js/2.b23e4867.chunk.js.LICENSE.txt": "/Personal-Identity-Token/static/js/2.b23e4867.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.de7a351e.js",
-    "static/js/2.df6077f9.chunk.js",
-    "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.7d72457d.chunk.js"
+    "static/js/runtime-main.49c4f9ae.js",
+    "static/js/2.b23e4867.chunk.js",
+    "static/css/main.afd7172b.chunk.css",
+    "static/js/main.772bfa85.chunk.js"
   ]
 }
