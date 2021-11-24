@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/Personal-Identity-Token/static/css/main.afd7172b.chunk.css",
-    "main.js": "/Personal-Identity-Token/static/js/main.dd1b9fda.chunk.js",
-    "main.js.map": "/Personal-Identity-Token/static/js/main.dd1b9fda.chunk.js.map",
-    "runtime-main.js": "/Personal-Identity-Token/static/js/runtime-main.49c4f9ae.js",
-    "runtime-main.js.map": "/Personal-Identity-Token/static/js/runtime-main.49c4f9ae.js.map",
-    "static/js/2.b23e4867.chunk.js": "/Personal-Identity-Token/static/js/2.b23e4867.chunk.js",
-    "static/js/2.b23e4867.chunk.js.map": "/Personal-Identity-Token/static/js/2.b23e4867.chunk.js.map",
-    "static/js/3.462db86e.chunk.js": "/Personal-Identity-Token/static/js/3.462db86e.chunk.js",
-    "static/js/3.462db86e.chunk.js.map": "/Personal-Identity-Token/static/js/3.462db86e.chunk.js.map",
-    "static/js/4.b1846457.chunk.js": "/Personal-Identity-Token/static/js/4.b1846457.chunk.js",
-    "static/js/4.b1846457.chunk.js.map": "/Personal-Identity-Token/static/js/4.b1846457.chunk.js.map",
+    "main.js": "/Personal-Identity-Token/static/js/main.bd1a4229.chunk.js",
+    "main.js.map": "/Personal-Identity-Token/static/js/main.bd1a4229.chunk.js.map",
+    "runtime-main.js": "/Personal-Identity-Token/static/js/runtime-main.0926fb1f.js",
+    "runtime-main.js.map": "/Personal-Identity-Token/static/js/runtime-main.0926fb1f.js.map",
+    "static/js/2.98a59890.chunk.js": "/Personal-Identity-Token/static/js/2.98a59890.chunk.js",
+    "static/js/2.98a59890.chunk.js.map": "/Personal-Identity-Token/static/js/2.98a59890.chunk.js.map",
+    "static/js/3.db8f05c7.chunk.js": "/Personal-Identity-Token/static/js/3.db8f05c7.chunk.js",
+    "static/js/3.db8f05c7.chunk.js.map": "/Personal-Identity-Token/static/js/3.db8f05c7.chunk.js.map",
+    "static/js/4.cc48ec50.chunk.js": "/Personal-Identity-Token/static/js/4.cc48ec50.chunk.js",
+    "static/js/4.cc48ec50.chunk.js.map": "/Personal-Identity-Token/static/js/4.cc48ec50.chunk.js.map",
     "index.html": "/Personal-Identity-Token/index.html",
     "static/css/main.afd7172b.chunk.css.map": "/Personal-Identity-Token/static/css/main.afd7172b.chunk.css.map",
-    "static/js/2.b23e4867.chunk.js.LICENSE.txt": "/Personal-Identity-Token/static/js/2.b23e4867.chunk.js.LICENSE.txt"
+    "static/js/2.98a59890.chunk.js.LICENSE.txt": "/Personal-Identity-Token/static/js/2.98a59890.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.49c4f9ae.js",
-    "static/js/2.b23e4867.chunk.js",
+    "static/js/runtime-main.0926fb1f.js",
+    "static/js/2.98a59890.chunk.js",
     "static/css/main.afd7172b.chunk.css",
-    "static/js/main.dd1b9fda.chunk.js"
+    "static/js/main.bd1a4229.chunk.js"
   ]
 }
