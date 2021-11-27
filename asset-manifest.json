@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/Personal-Identity-Token/static/css/main.afd7172b.chunk.css",
-    "main.js": "/Personal-Identity-Token/static/js/main.c57b8999.chunk.js",
-    "main.js.map": "/Personal-Identity-Token/static/js/main.c57b8999.chunk.js.map",
-    "runtime-main.js": "/Personal-Identity-Token/static/js/runtime-main.a34c5b05.js",
-    "runtime-main.js.map": "/Personal-Identity-Token/static/js/runtime-main.a34c5b05.js.map",
-    "static/js/2.98a59890.chunk.js": "/Personal-Identity-Token/static/js/2.98a59890.chunk.js",
-    "static/js/2.98a59890.chunk.js.map": "/Personal-Identity-Token/static/js/2.98a59890.chunk.js.map",
-    "static/js/3.db8f05c7.chunk.js": "/Personal-Identity-Token/static/js/3.db8f05c7.chunk.js",
-    "static/js/3.db8f05c7.chunk.js.map": "/Personal-Identity-Token/static/js/3.db8f05c7.chunk.js.map",
-    "static/js/4.c179f95b.chunk.js": "/Personal-Identity-Token/static/js/4.c179f95b.chunk.js",
-    "static/js/4.c179f95b.chunk.js.map": "/Personal-Identity-Token/static/js/4.c179f95b.chunk.js.map",
-    "index.html": "/Personal-Identity-Token/index.html",
-    "static/css/main.afd7172b.chunk.css.map": "/Personal-Identity-Token/static/css/main.afd7172b.chunk.css.map",
-    "static/js/2.98a59890.chunk.js.LICENSE.txt": "/Personal-Identity-Token/static/js/2.98a59890.chunk.js.LICENSE.txt"
+    "main.css": "/monorepo/static/css/main.afd7172b.chunk.css",
+    "main.js": "/monorepo/static/js/main.9fafe3d1.chunk.js",
+    "main.js.map": "/monorepo/static/js/main.9fafe3d1.chunk.js.map",
+    "runtime-main.js": "/monorepo/static/js/runtime-main.84d35d39.js",
+    "runtime-main.js.map": "/monorepo/static/js/runtime-main.84d35d39.js.map",
+    "static/js/2.cca909d1.chunk.js": "/monorepo/static/js/2.cca909d1.chunk.js",
+    "static/js/2.cca909d1.chunk.js.map": "/monorepo/static/js/2.cca909d1.chunk.js.map",
+    "static/js/3.cc9e730d.chunk.js": "/monorepo/static/js/3.cc9e730d.chunk.js",
+    "static/js/3.cc9e730d.chunk.js.map": "/monorepo/static/js/3.cc9e730d.chunk.js.map",
+    "static/js/4.56a96f81.chunk.js": "/monorepo/static/js/4.56a96f81.chunk.js",
+    "static/js/4.56a96f81.chunk.js.map": "/monorepo/static/js/4.56a96f81.chunk.js.map",
+    "index.html": "/monorepo/index.html",
+    "static/css/main.afd7172b.chunk.css.map": "/monorepo/static/css/main.afd7172b.chunk.css.map",
+    "static/js/2.cca909d1.chunk.js.LICENSE.txt": "/monorepo/static/js/2.cca909d1.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.a34c5b05.js",
-    "static/js/2.98a59890.chunk.js",
+    "static/js/runtime-main.84d35d39.js",
+    "static/js/2.cca909d1.chunk.js",
     "static/css/main.afd7172b.chunk.css",
-    "static/js/main.c57b8999.chunk.js"
+    "static/js/main.9fafe3d1.chunk.js"
   ]
 }
