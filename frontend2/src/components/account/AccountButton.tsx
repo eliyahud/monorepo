@@ -5,6 +5,7 @@ import { Colors } from '../../global/styles';
 import styled from 'styled-components';
 
 import { AccountModal } from './AccountModal';
+import { chainList } from '../../data/contracts';
 
 export const AccountButton = () => {
   const { account, deactivate, activateBrowserWallet } = useEthers();
@@ -12,7 +13,7 @@ export const AccountButton = () => {
   const [showModal, setShowModal] = useState(false);
 
   const [activateError, setActivateError] = useState('');
-  const { error } = useEthers();
+  const { error, chainId } = useEthers();
   useEffect(() => {
     if (error) {
       setActivateError(error.message);
@@ -24,12 +25,19 @@ export const AccountButton = () => {
     activateBrowserWallet();
   };
 
+  const chainData = chainId ? chainList[chainId] : null;
+
   return (
     <Account>
       <ErrorWrapper>{activateError}</ErrorWrapper>
       {showModal && <AccountModal setShowModal={setShowModal} />}
       {account ? (
         <>
+          {chainData ? (
+            <ChainIndicator>{chainData.name}</ChainIndicator>
+          ) : (
+            <UnsupportedChainIndicator>Unsupported</UnsupportedChainIndicator>
+          )}
           <AccountLabel onClick={() => setShowModal(!showModal)}>
             {ens ?? shortenAddress(account)}
           </AccountLabel>
@@ -41,6 +49,23 @@ export const AccountButton = () => {
     </Account>
   );
 };
+
+const ChainIndicator = styled.div`
+  background-color: rgb(130, 72, 229);
+  color: rgb(255, 255, 255);
+  border-radius: 3px;
+  line-height: normal;
+  text-transform: capitalize;
+  margin: 0px;
+  padding: 4px 8px;
+  min-width: 70px;
+  text-align: center;
+  margin-right: 10px;
+`;
+
+const UnsupportedChainIndicator = styled(ChainIndicator)`
+  background-color: rgb(236, 6, 14);
+`;
 
 const ErrorWrapper = styled.div`
   color: #ff3960;

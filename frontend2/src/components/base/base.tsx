@@ -94,4 +94,5 @@ export const ContentBlock = styled.div`
   border-radius: ${BorderRad.s};
   box-shadow: ${Shadows.main};
   padding: 32px 32px;
+  margin-bottom: 20px;
 `;

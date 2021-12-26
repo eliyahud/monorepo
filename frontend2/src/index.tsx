@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Mainnet, DAppProvider } from '@usedapp/core';
 import { App } from './App';
+import { Grommet } from 'grommet';
 
 const config = {
   readOnlyChainId: Mainnet.chainId,
@@ -14,7 +15,9 @@ const config = {
 ReactDOM.render(
   <React.StrictMode>
     <DAppProvider config={config}>
-      <App />
+      <Grommet plain>
+        <App />
+      </Grommet>
     </DAppProvider>
   </React.StrictMode>,
   document.getElementById('root'),

@@ -195,27 +195,29 @@ export const NotificationsList = () => {
   return (
     <NotificationsWrapper>
       <AnimatePresence initial={false}>
-        {notifications.map((notification) => {
-          if ('transaction' in notification)
-            return (
-              <NotificationElement
-                key={notification.id}
-                icon={notificationContent[notification.type].icon}
-                title={notificationContent[notification.type].title}
-                transaction={notification.transaction}
-                date={Date.now()}
-              />
-            );
-          else
-            return (
-              <NotificationElement
-                key={notification.id}
-                icon={notificationContent[notification.type].icon}
-                title={notificationContent[notification.type].title}
-                date={Date.now()}
-              />
-            );
-        })}
+        {notifications
+          .filter((n) => n.type !== 'walletConnected')
+          .map((notification) => {
+            if ('transaction' in notification)
+              return (
+                <NotificationElement
+                  key={notification.id}
+                  icon={notificationContent[notification.type].icon}
+                  title={notificationContent[notification.type].title}
+                  transaction={notification.transaction}
+                  date={Date.now()}
+                />
+              );
+            else
+              return (
+                <NotificationElement
+                  key={notification.id}
+                  icon={notificationContent[notification.type].icon}
+                  title={notificationContent[notification.type].title}
+                  date={Date.now()}
+                />
+              );
+          })}
       </AnimatePresence>
     </NotificationsWrapper>
   );
