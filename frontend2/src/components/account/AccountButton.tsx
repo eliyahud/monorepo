@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { useEthers, shortenAddress, useLookupAddress } from '@usedapp/core';
+import { shortenAddress, useEthers, useLookupAddress } from '@usedapp/core';
 import { Button } from '../base/Button';
 import { Colors } from '../../global/styles';
 import styled from 'styled-components';
 
 import { AccountModal } from './AccountModal';
-import { chainList } from '../../data/contracts';
+import { useChain } from '../../data/contracts';
 
 export const AccountButton = () => {
   const { account, deactivate, activateBrowserWallet } = useEthers();
   const ens = useLookupAddress();
   const [showModal, setShowModal] = useState(false);
-
   const [activateError, setActivateError] = useState('');
-  const { error, chainId } = useEthers();
+  const { error } = useEthers();
+  const chainData = useChain();
   useEffect(() => {
     if (error) {
       setActivateError(error.message);
@@ -24,8 +24,6 @@ export const AccountButton = () => {
     setActivateError('');
     activateBrowserWallet();
   };
-
-  const chainData = chainId ? chainList[chainId] : null;
 
   return (
     <Account>

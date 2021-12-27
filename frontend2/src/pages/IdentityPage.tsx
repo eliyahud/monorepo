@@ -13,7 +13,7 @@ import { Title } from '../typography/Title';
 import { usePIT } from '../components/PersonalIdentityToken/PersonalIdentityToken';
 import { useForm } from 'react-hook-form';
 import { Box, Button, Form, FormField, TextInput } from 'grommet';
-import { Token, useMyTokenBalance } from '../data/contracts';
+import { Contract, useMyTokenBalance } from '../data/contracts';
 
 interface MintTokenFormProps {
   onSubmit: (firstName: string, lastName: string, email: string) => void;
@@ -54,7 +54,7 @@ const Create = () => {
   const { mintToken, state } = usePIT();
   const { account } = useEthers();
   const etherBalance = useEtherBalance(account);
-  const linkBalance = useMyTokenBalance(Token.LINK);
+  const linkBalance = useMyTokenBalance(Contract.Chainlink);
   return (
     <>
       <ContentBlock>
