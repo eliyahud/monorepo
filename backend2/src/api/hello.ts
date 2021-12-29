@@ -1,4 +1,4 @@
-import { formatJSONResponse } from "@libs/apiGateway";
+import { formatJSONResponse } from "../libs/apiGateway";
 
 export const handler = async (event) => {
   console.log(event);
