@@ -7,26 +7,26 @@ const complycube = new ComplyCube({ apiKey: apiKey });
 
 const controller = {
   index: async (req, res, next) => {
-    res.json({"name":"personal identity token", "version":"v1"});
+    res.json({ name: "personal identity token", version: "v1" });
   },
 
   cancel: async (req, res, next) => {
-    res.json({"message":"your action was cancelled"});
+    res.json({ message: "your action was cancelled" });
   },
 
   get: async (req, res, next) => {
     try {
       const checkResponse = await complycube.check.create(req.params.clientId, {
-        type: "extensive_screening_check"
+        type: "extensive_screening_check",
       });
       const check = await complycube.check.get(checkResponse.id);
 
       res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader('Access-Control-Allow-Methods', '*');
+      res.setHeader("Access-Control-Allow-Methods", "*");
       res.setHeader("Access-Control-Allow-Headers", "*");
       res.json(check);
     } catch (error) {
-      return next(error)
+      return next(error);
     }
   },
 
@@ -36,19 +36,19 @@ const controller = {
         checkTypes: [
           "standard_screening_check",
           "identity_check",
-          "document_check"
+          "document_check",
         ],
-        successUrl: "http://legalattorney.xyz/get/"+req.params.clientId,
+        successUrl: "http://legalattorney.xyz/get/" + req.params.clientId,
         cancelUrl: "http://legalattorney.xyz/cancel",
-        theme: "light"
+        theme: "light",
       });
 
       res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader('Access-Control-Allow-Methods', '*');
+      res.setHeader("Access-Control-Allow-Methods", "*");
       res.setHeader("Access-Control-Allow-Headers", "*");
       res.json(session);
     } catch (error) {
-      return next(error)
+      return next(error);
     }
   },
 
@@ -59,29 +59,29 @@ const controller = {
         email: req.query.email,
         personDetails: {
           firstName: req.query.firstName,
-          lastName: req.query.lastName
-        }
+          lastName: req.query.lastName,
+        },
       });
 
       const cid = await uploadToIPFS(client.id);
 
       res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader('Access-Control-Allow-Methods', '*');
+      res.setHeader("Access-Control-Allow-Methods", "*");
       res.setHeader("Access-Control-Allow-Headers", "*");
-      res.json({"data": Web3.utils.toHex(cid)});
+      res.json({ data: Web3.utils.toHex(cid) });
     } catch (error) {
       // Passes errors into the error handler
-      return next(error)
+      return next(error);
     }
   },
 };
 
 const uploadToIPFS = async (data) => {
-  const file = JSON.stringify({data: data, version: "v1"});
-  const client = create(new URL('https://ipfs.infura.io:5001/api/v0'));
+  const file = JSON.stringify({ data: data, version: "v1" });
+  const client = create(new URL("https://ipfs.infura.io:5001/api/v0"));
   const cid = await client.add(file);
 
   return cid.path;
-}
+};
 
 module.exports = controller;

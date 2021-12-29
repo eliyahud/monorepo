@@ -1,0 +1,54 @@
+service: keyring-network-backend
+
+plugins:
+  - serverless-esbuild
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    noPrependStageInUrl: true
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  apiGateway:
+    minimumCompressionSize: 1024
+    shouldStartNameWithService: true
+  environment:
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+    STAGE: ${opt:stage, 'dev'}
+    SERVICE: ${self:service}
+    REGION: !Ref "AWS::Region"
+    ACCOUNT_ID: !Ref "AWS::AccountId"
+    COMPLY_CUBE_API_KEY: asdf
+    IPFS_URL: https://ipfs.infura.io:5001/api/v0
+    EXTERNAL_URL: http://legalattorney.xyz/
+
+functions:
+  CreateClient:
+    handler: src/api/hello.handler
+    events:
+      - http:
+          method: post
+          path: /clients
+
+  CreateCheck:
+    handler: src/api/hello.handler
+    events:
+      - http:
+          method: post
+          path: /checks
+
+  GetCheckStatus:
+    handler: src/api/hello.handler
+    events:
+      - http:
+          method: get
+          path: /checks/{checkId}
+
+  InitiateFlow:
+    handler: src/api/hello.handler
+    events:
+      - http:
+          method: post
+          path: /flows

@@ -1,12 +1,9 @@
----
-name: CD
+name: Deploy frontend
 
 on:
   push:
     branches:
       - main
-      - staging
-      - feature/initial
 
 jobs:
   deployfrontend:
