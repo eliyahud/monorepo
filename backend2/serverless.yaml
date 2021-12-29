@@ -20,13 +20,13 @@ provider:
     SERVICE: ${self:service}
     REGION: !Ref "AWS::Region"
     ACCOUNT_ID: !Ref "AWS::AccountId"
-    COMPLY_CUBE_API_KEY: asdf
+    COMPLY_CUBE_API_KEY: ${ssm:/dev/backend/complyCubeKey}
     IPFS_URL: https://ipfs.infura.io:5001/api/v0
     EXTERNAL_URL: http://legalattorney.xyz/
 
 functions:
   CreateClient:
-    handler: src/api/hello.handler
+    handler: src/api/createClient.handler
     events:
       - http:
           method: post
