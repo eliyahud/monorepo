@@ -1,18 +1,18 @@
-import { formatJSONResponse } from "../libs/apiGateway";
+import { formatJSONResponse, formatWeb3Response } from "../libs/apiGateway";
 import { createClient } from "../libs/complyCube";
+import { uploadToIPFS } from "../libs/ipfs";
 
 export const handler = async (event) => {
-  console.log("createClient", event);
-  console.log(process.env);
-  const { firstName, lastName, email } = JSON.parse(event.body);
+  const { firstName, lastName, email, address } = event.queryStringParameters;
 
-  const result = await createClient({
+  const clientId = await createClient({
     firstName,
     lastName,
     email,
+    address,
   });
 
-  return formatJSONResponse({
-    result,
-  });
+  const result = await uploadToIPFS(clientId);
+
+  return formatJSONResponse(formatWeb3Response(result));
 };

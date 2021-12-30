@@ -9,22 +9,25 @@ interface CreateClientParams {
   email: string;
   firstName: string;
   lastName: string;
+  address: string;
 }
 
 export const createClient = async ({
   email,
   firstName,
   lastName,
-}: CreateClientParams) => {
-  console.log("createClient", { email, firstName, lastName });
+  address,
+}: CreateClientParams): Promise<string> => {
+  console.log("createClient", { email, firstName, lastName, address });
   const result = await complycubeClient.client.create({
     type: "person",
     email,
+    externalId: address,
     personDetails: {
       firstName,
       lastName,
     },
   });
-  console.log("createClient finished", { email, firstName, lastName, result });
-  return result;
+  console.log("createClient finished", result);
+  return result.id;
 };
