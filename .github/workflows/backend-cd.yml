@@ -8,8 +8,29 @@ on: push
 #      - master
 
 jobs:
-  deploy:
-    name: deploy
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Install Packages
+        run: |
+          yarn install --frozen-lockfile
+
+      - name: Test
+        run: |
+          yarn test:ci
+
+
+  staging_deploy:
+    name: Deploy to Staging
+    needs: test
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -25,7 +46,30 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn install --frozen-lockfile
-      - run: npx serverless deploy
+      - run: npx serverless deploy -s staging
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+  prod_deploy:
+    name: Deploy to Production
+    needs: staging_deploy
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: backend2
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn install --frozen-lockfile
+      - run: npx serverless deploy -s prod
         env:
            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
