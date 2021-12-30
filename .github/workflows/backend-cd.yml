@@ -40,15 +40,12 @@ jobs:
       run:
         shell: bash
         working-directory: backend2
-    strategy:
-      matrix:
-        node-version: [14.x]
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 14
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 14
       - run: yarn install --frozen-lockfile
       - run: npx serverless deploy -s staging
         env:
@@ -63,15 +60,12 @@ jobs:
       run:
         shell: bash
         working-directory: backend2
-    strategy:
-      matrix:
-        node-version: [14.x]
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 14
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 14
       - run: yarn install --frozen-lockfile
       - run: npx serverless deploy -s prod
         env:

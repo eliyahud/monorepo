@@ -1,13 +1,11 @@
 name: Deploy frontend
 
-on:
-  push:
-    branches:
-      - main
+on: push
 
 jobs:
-  deployfrontend:
-    name: Build and Deploy Frontend
+
+  create_release:
+    name: Create Release
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -17,36 +15,76 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Use Node.js 14
-        uses: actions/setup-node@v1
+      - name: Set up node
+        uses: actions/setup-node@v2
         with:
           node-version: 14
+          registry-url: https://registry.npmjs.org
 
-      - name: Install Deps
-        run: yarn
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
 
-      - name: Build Application
+      - name: Build the ReactJS bundle
         run: yarn build
-        env:
-          CI: false
 
-      - name: Deploy App
-        uses: jakejarvis/s3-sync-action@7ed8b112447abb09f1da74f3466e4194fc7a6311
+      - name: Pin to IPFS
+        id: upload
+        uses: anantaramdas/ipfs-pinata-deploy-action@39bbda1ce1fe24c69c6f57861b8038278d53688d
         with:
-          args: --acl public-read --follow-symlinks --delete
-        env:
-          AWS_S3_BUCKET: ${{ secrets.S3_BUCKET }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: us-east-1
-          SOURCE_DIR: frontend2/build
+          #          pin-name: Ithil ${{ needs.bump_version.outputs.new_tag }}
+          pin-name: Keyring
+          path: './build'
+          pinata-api-key: ${{ secrets.PINATA_API_KEY }}
+          pinata-secret-api-key: ${{ secrets.PINATA_API_SECRET_KEY }}
 
-      - name: Invalidate Cloudfront Cache
-        if: github.event_name != 'workflow_dispatch'
-        uses: chetan/invalidate-cloudfront-action@v1.3
+      #      - name: Pin to Crust
+      #        uses: crustio/ipfs-crust-action@v2.0.3
+      #        continue-on-error: true
+      #        timeout-minutes: 2
+      #        with:
+      #          cid: ${{ steps.upload.outputs.hash }}
+      #          seeds: ${{ secrets.CRUST_SEEDS }}
+
+      - name: Convert CIDv0 to CIDv1
+        id: convert_cidv0
+        uses: uniswap/convert-cidv0-cidv1@v1.0.0
+        with:
+          cidv0: ${{ steps.upload.outputs.hash }}
+
+      - name: Update DNS with new IPFS hash
         env:
-          DISTRIBUTION: ${{ secrets.CLOUDFRONT_DISTRIBUTION }}
-          PATHS: '/*'
-          AWS_REGION: us-east-1
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
+          RECORD_DOMAIN: 'ithil.fi'
+          RECORD_NAME: '_dnslink.app'
+          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+        uses: textileio/cloudflare-update-dnslink@0fe7b7a1ffc865db3a4da9773f0f987447ad5848
+        with:
+          cid: ${{ steps.upload.outputs.hash }}
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1.1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          #          tag_name: ${{ needs.bump_version.outputs.new_tag }}
+          #          release_name: Release ${{ needs.bump_version.outputs.new_tag }}
+          release_name: Release
+          body: |
+            IPFS hash of the deployment:
+            - CIDv0: `${{ steps.upload.outputs.hash }}`
+            - CIDv1: `${{ steps.convert_cidv0.outputs.cidv1 }}`
+
+            The latest release is always accessible via our alias to the Cloudflare IPFS gateway at [app.ithil.fi](https://app.ithil.fi).
+
+            You can also access the Keyring interface directly from an IPFS gateway.
+            **BEWARE**: The Keyring interface uses [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) to remember your settings, such as which tokens you have imported.
+            **You should always use an IPFS gateway that enforces origin separation**, or our alias to the latest release at.
+            Your Ithil settings are never remembered across different URLs.
+
+            IPFS gateways:
+            - https://${{ steps.convert_cidv0.outputs.cidv1 }}.ipfs.dweb.link/
+            - https://${{ steps.convert_cidv0.outputs.cidv1 }}.ipfs.cf-ipfs.com/
+            - [ipfs://${{ steps.upload.outputs.hash }}/](ipfs://${{ steps.upload.outputs.hash }}/)
+
+            ${{ needs.bump_version.outputs.changelog }}
