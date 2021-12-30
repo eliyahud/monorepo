@@ -12,6 +12,10 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: backend2
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js 14
