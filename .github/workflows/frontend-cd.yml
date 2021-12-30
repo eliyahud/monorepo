@@ -25,7 +25,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build the ReactJS bundle
-        run: yarn build
+        run: CI= yarn build
 
       - name: Pin to IPFS
         id: upload
