@@ -1,12 +1,12 @@
 import middy from "@middy/core";
 import jsonBodyParser from "@middy/http-json-body-parser";
-import httpErrorHandler from "@middy/http-error-handler";
 import * as Joi from "joi";
-
 import { formatJSONResponse, formatWeb3Response } from "../libs/apiGateway";
 import { createClient } from "../libs/complyCube";
 import { uploadToIPFS } from "../libs/ipfs";
 import { joiMiddleware } from "../libs/validator";
+
+const HEX_REGEX = /^0x[0-9a-fA-F]+$/;
 
 const schema = Joi.object({
   body: Joi.any(),
@@ -14,7 +14,7 @@ const schema = Joi.object({
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
     email: Joi.string().email().required(),
-    address: Joi.string().regex(/^0x[0-9a-fA-F]+$/),
+    address: Joi.string().regex(HEX_REGEX),
   }).required(),
 });
 
@@ -33,11 +33,8 @@ const createClientHandler = async (event) => {
   return formatJSONResponse(formatWeb3Response(result));
 };
 
-export const handler = middy(createClientHandler)
-  .use(jsonBodyParser())
-  .use(httpErrorHandler())
-  .use(
-    joiMiddleware({
-      schema,
-    })
-  );
+export const handler = middy(createClientHandler).use(jsonBodyParser()).use(
+  joiMiddleware({
+    schema,
+  })
+);
